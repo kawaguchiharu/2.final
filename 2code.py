@@ -25,3 +25,4 @@ chrome_service = Service(executable_path=driver_path)
 driver = webdriver.Chrome(service=chrome_service, options=options)
 
 #参考
+#変更確認
