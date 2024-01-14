@@ -4,12 +4,18 @@ import shutil
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+
+# ダウンロードファイルの一時保存フォルダを作成
+tmp_dir = Path(Path.cwd(), "tmp")
+tmp_dir.mkdir(exist_ok=True, parents=True)
 
 # webdriverにオプションを追加
 options = Options()
 prefs = {"download.default_directory": str(tmp_dir)}
 options.add_experimental_option("prefs", prefs)
+
 
 # chromedriverのパスを指定
 driver_path = "/Users/kawaguchiharu/Downloads/chromedriver"
@@ -30,3 +36,38 @@ element = driver.find_element(by=By.CSS_SELECTOR, value=selector)
 print(element.get_attribute("outerHTML"))
 
 #スクレイピング完了
+
+#DBに格納
+
+import csv
+import sqlite3
+
+# ダウンロードファイルのパスを指定
+downloaded_file_path = tmp_dir / "downloaded_file.csv"
+
+# CSVファイルからデータを読み込み
+with open(downloaded_file_path, newline='', encoding='utf-8') as csvfile:
+    csv_reader = csv.reader(csvfile)
+    header = next(csv_reader)  
+
+# データベースに接続   
+    conn = sqlite3.connect('your_database.db')
+    cursor = conn.cursor()
+
+# テーブルの作成
+    create_table_query = '''
+    CREATE TABLE IF NOT EXISTS your_table_name (
+        column1_type,
+        column2_type,
+        ...
+    )
+    '''
+    cursor.execute(create_table_query)
+
+# データの挿入
+    insert_data_query = f'INSERT INTO your_table_name VALUES ({", ".join(["?"] * len(header))})'
+    for row in csv_reader:
+        cursor.execute(insert_data_query, row)
+
+# コミットしてclose
+    conn.close()
