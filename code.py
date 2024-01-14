@@ -6,10 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 
-# ダウンロードファイルの一時保存フォルダを作成
-tmp_dir = Path(Path.cwd(), "tmp")
-tmp_dir.mkdir(exist_ok=True, parents=True)
-
 # webdriverにオプションを追加
 options = Options()
 prefs = {"download.default_directory": str(tmp_dir)}
