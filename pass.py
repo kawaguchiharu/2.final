@@ -7,5 +7,3 @@ chrome_driver_path = "/path/to/chromedriver"
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = chrome_driver_path
 
-# ChromeDriverを使用してWebDriverを初期化
-driver = webdriver.Chrome(options=chrome_options)
