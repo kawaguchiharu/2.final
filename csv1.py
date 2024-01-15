@@ -29,7 +29,7 @@ url = "https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=
 driver.get(url=url)
 
 # コピーしたCSSセレクタを文字列に格納
-selector = "body > div.dialog-off-canvas-main-canvas > div > main > div.row.l-estatRow > section > div.region.region-content > div > div > div.stat-content.fix > section > section > div > div.stat-dataset_list > div > article:nth-child(8) > div > ul > li:nth-child(2) > div > div:nth-child(4) > div > a.stat-dl_icon.stat-icon_1.stat-icon_format.js-dl.stat-download_icon_left"
+selector = "body > div.dialog-off-canvas-main-canvas > div > main > div.row.l-estatRow > section > div.region.region-content > div > div > div.stat-content.fix > section > section > div > div.stat-search_result-files > div.stat-resource_download_filed > div:nth-child(2) > a.stat-dl_icon.stat-icon_1.stat-icon_format.js-dl.stat-download_icon_top"
 element = driver.find_element(by=By.CSS_SELECTOR, value=selector)
 
 # 取得したWeb要素のHTMLを表示
