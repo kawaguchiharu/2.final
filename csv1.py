@@ -69,5 +69,5 @@ with open(downloaded_file_path, newline='', encoding='utf-8') as csvfile:
     for row in csv_reader:
         cursor.execute(insert_data_query, row)
 
-# コミットしてclose
+# close
     conn.close()
