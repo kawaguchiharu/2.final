@@ -56,7 +56,7 @@ with open(downloaded_file_path, newline='', encoding='utf-8') as csvfile:
 
 # テーブルの作成
     create_table_query = '''
-    CREATE TABLE IF NOT EXISTS your_table_name (
+    CREATE TABLE IF NOT EXISTS accidents (
         column1_type,
         column2_type,
         ...
