@@ -57,18 +57,18 @@ with open(downloaded_file_path, newline='', encoding='utf-8') as csvfile:
 # テーブルの作成
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS accidents (
-     activity_type VARCHAR(50) NOT NULL,
-     daytime_auto INT,
-     daytime_motorcycle INT,
-     daytime_moped INT,
-     daytime_bicycle INT,
-     pedestrian INT,
-     other INT,
-     nighttime_auto INT,
-     nighttime_motorcycle INT,
-     nighttime_moped INT,
-     nighttime_bicycle INT,
-     nighttime_pedestrian INT,
+     id INT PRIMARY KEY AUTO_INCREMENT,
+     time_of_day VARCHAR(10) NOT NULL,
+     age_group VARCHAR(20) NOT NULL,
+     state VARCHAR(20) NOT NULL,
+     total_injured_killed INT NOT NULL,
+     car_passenger INT NOT NULL,
+     motorcycle_passenger INT NOT NULL,
+     moped_passenger INT NOT NULL,
+     bicycle_rider INT NOT NULL,
+     pedestrian INT NOT NULL,
+     other INT NOT NULL
+);
         ...
     )
     '''
