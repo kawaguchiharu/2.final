@@ -43,7 +43,7 @@ import csv
 import sqlite3
 
 # ダウンロードファイルのパスを指定
-downloaded_file_path = tmp_dir / "downloaded_file.csv"
+downloaded_file_path = tmp_dir / "ac.csv"
 
 # CSVファイルからデータを読み込み
 with open(downloaded_file_path, newline='', encoding='utf-8') as csvfile:
@@ -51,21 +51,31 @@ with open(downloaded_file_path, newline='', encoding='utf-8') as csvfile:
     header = next(csv_reader)  
 
 # データベースに接続   
-    conn = sqlite3.connect('your_database.db')
+    conn = sqlite3.connect('kawaguchiharu.db')
     cursor = conn.cursor()
 
 # テーブルの作成
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS accidents (
-        column1_type,
-        column2_type,
+     activity_type VARCHAR(50) NOT NULL,
+     daytime_auto INT,
+     daytime_motorcycle INT,
+     daytime_moped INT,
+     daytime_bicycle INT,
+     pedestrian INT,
+     other INT,
+     nighttime_auto INT,
+     nighttime_motorcycle INT,
+     nighttime_moped INT,
+     nighttime_bicycle INT,
+     nighttime_pedestrian INT,
         ...
     )
     '''
     cursor.execute(create_table_query)
 
 # データの挿入
-    insert_data_query = f'INSERT INTO your_table_name VALUES ({", ".join(["?"] * len(header))})'
+    insert_data_query = f'INSERT INTO  VALUES accidents ({", ".join(["?"] * len(header))})'
     for row in csv_reader:
         cursor.execute(insert_data_query, row)
 
